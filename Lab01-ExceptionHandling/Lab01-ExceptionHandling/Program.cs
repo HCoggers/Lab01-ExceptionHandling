@@ -29,15 +29,40 @@ namespace Lab01_ExceptionHandling
         static void StartSequence()
         {
             // Prompt user for "Length", and Convert string to int
+            try
+            {
+                Console.WriteLine("Welcome to my game! Let's do some math!\n" +
+                "Please enter a number greater than zero");
+                string inputLength = Console.ReadLine();
+                int length = Convert.ToInt32(inputLength);
 
-            // Instantiate an int array matching their chosen length
+                // Instantiate an int array matching their chosen length
+                int[] numArray = new int[length];
 
-            // Call The Populate, GetSum, GetProduct, and GetQuotient methods on that array, in order
+                // Call The Populate, GetSum, GetProduct, and GetQuotient methods on that array, in order
+                numArray = Populate(numArray);
+                int sum = GetSum(numArray);
+                int product = GetProduct(numArray, sum);
+                decimal quotient = GetQuotient(product);
 
-            // Output all input and mathematic details back to the console screen
-
+                // Output all input and mathematic details back to the console screen
+                Console.WriteLine($"Your array is size: {length}";
+                Console.WriteLine($"The numbers in the array are ${numArray[0]}");
+                for (int i = 1; i < numArray.Length; i++)
+                    Console.Write($",{numArray[i]}");
+                Console.WriteLine($"The sum of the array is {sum}");
+                Console.WriteLine($"{sum} * {product / sum} = {product}");
+                Console.WriteLine($"{product} / {product / quotient} = {quotient}");
+            }
             // Catch all Format and Overflow Exceptions properly
-
+            catch (FormatException e)
+            {
+                Console.WriteLine($"There was a formatting exception. The message is: \n{e}");
+            }
+            catch(OverflowException e)
+            {
+                Console.WriteLine($"There was an overflow exception. The message is: \n{e}");
+            }
         }
 
         // POPULATE METHOD
