@@ -52,7 +52,7 @@ namespace Lab01_ExceptionHandling
                     Console.Write($",{numArray[i]}");
                 Console.WriteLine($"\nThe sum of the array is {sum}");
                 Console.WriteLine($"{sum} * {product / sum} = {product}");
-                Console.WriteLine($"{product} / {product / quotient} = {quotient}");
+                Console.WriteLine($"{product} / {((quotient != 0) ? (product / quotient) : quotient)} = {quotient}");
             }
             // Catch all Format and Overflow Exceptions properly
             catch (FormatException e)
@@ -127,17 +127,17 @@ namespace Lab01_ExceptionHandling
             decimal quotient;
             try
             { 
-            // integrating the product, ask the user for a number to divide it by
-            Console.WriteLine($"Please enter a number to divide your product {product} by");
-            string inputDiv = Console.ReadLine();
-            decimal dividend = Convert.ToDecimal(inputDiv);
+                // integrating the product, ask the user for a number to divide it by
+                Console.WriteLine($"Please enter a number to divide your product {product} by");
+                string inputDiv = Console.ReadLine();
+                decimal divisor = Convert.ToDecimal(inputDiv);
 
-            // use decimal.Divide() to get the quotient of the product and the dividend
-            quotient = decimal.Divide(dividend, product);
+                // use decimal.Divide() to get the quotient of the product and the dividend
+                quotient = decimal.Divide(product, divisor);
             }
-            // catch the dividebyzero exception, display the message and return 0. DO NOT THROW TO MAIN.
             catch (DivideByZeroException e)
             {
+                // catch the dividebyzero exception, display the message and return 0. DO NOT THROW TO MAIN.
                 Console.WriteLine($"There was a dividing exception:\n" +
                     $"{e.Message}");
                 return 0;
