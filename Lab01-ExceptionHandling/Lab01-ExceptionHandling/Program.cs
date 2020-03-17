@@ -74,12 +74,15 @@ namespace Lab01_ExceptionHandling
                 Console.WriteLine($"Please enter number: {i + 1} of {numArray.Length}");
                 // Convert strings to ints along the way
                 string inputNum = Console.ReadLine();
-                if(int.TryParse(inputNum, out int num))
-                    numArray[i] = num;
+                if (int.TryParse(inputNum, out int num))
+                    if (num % 2 != 0)
+                        numArray[i] = num;
+                    else
+                        // MORE CUSTOM EXCEPTIONS!!!
+                        throw (new Exception($"Your value of {num} was an even number. Try an odd one."));
             }
             // Once the array is filled, return the populated array
             return numArray;
-            // no expected exceptions!
         }
 
         // GETSUM METHOD
@@ -108,7 +111,7 @@ namespace Lab01_ExceptionHandling
                 string inputIdx = Console.ReadLine();
 
                 // declare int product as sum times the random index they picked in the array
-                int multiplier = numArray[int.Parse(inputIdx)];
+                int multiplier = numArray[int.Parse(inputIdx) - 1];
                 int product = sum * multiplier;
 
                 // return product
