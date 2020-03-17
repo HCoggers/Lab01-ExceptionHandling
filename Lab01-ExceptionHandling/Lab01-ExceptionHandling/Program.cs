@@ -46,22 +46,22 @@ namespace Lab01_ExceptionHandling
                 decimal quotient = GetQuotient(product);
 
                 // Output all input and mathematic details back to the console screen
-                Console.WriteLine($"Your array is size: {length}";
-                Console.WriteLine($"The numbers in the array are ${numArray[0]}");
+                Console.WriteLine($"Your array is size: {length}");
+                Console.Write($"The numbers in the array are {numArray[0]}");
                 for (int i = 1; i < numArray.Length; i++)
                     Console.Write($",{numArray[i]}");
-                Console.WriteLine($"The sum of the array is {sum}");
+                Console.WriteLine($"\nThe sum of the array is {sum}");
                 Console.WriteLine($"{sum} * {product / sum} = {product}");
                 Console.WriteLine($"{product} / {product / quotient} = {quotient}");
             }
             // Catch all Format and Overflow Exceptions properly
             catch (FormatException e)
             {
-                Console.WriteLine($"There was a formatting exception. The message is: \n{e}");
+                Console.WriteLine($"There was a formatting exception. The message is: \n{e.Message}");
             }
             catch(OverflowException e)
             {
-                Console.WriteLine($"There was an overflow exception. The message is: \n{e}");
+                Console.WriteLine($"There was an overflow exception. The message is: \n{e.Message}");
             }
         }
 
@@ -74,17 +74,20 @@ namespace Lab01_ExceptionHandling
             // Once the array is filled, return the populated array
 
             // no expected exceptions!
+            return numArray;
         }
 
         // GETSUM METHOD
         static int GetSum(int[] numArray)
         {
             // create new int "sum"
+            int sum = 0;
             // iterate through the array, adding all numbers together
 
             // "throw" a custom exception if sum is less than 20
 
             // return the sum
+            return sum;
         }
 
         // GETPRODUCT METHOD
@@ -93,9 +96,10 @@ namespace Lab01_ExceptionHandling
             // request a number between 1 and numArray length
 
             // declare int product as sum times the random index they picked in the array
+            int product = 0;
 
             // return product
-            
+            return product;
             // catch indexoutofrange exception, output the message of the exception, then throw it back down all the way to Main
         }
 
@@ -103,10 +107,13 @@ namespace Lab01_ExceptionHandling
         static decimal GetQuotient(int product)
         {
             // integrating the product, ask the user for a number to divide it by
+            decimal dividend = 0m;
 
             // use decimal.Divide() to get the quotient of the product and the dividend
+            decimal quotient = 0m;
 
             // return the quotient
+            return quotient;
 
             // catch the dividebyzero exception, display the message and return 0. DO NOT THROW TO MAIN.
         }
