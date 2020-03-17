@@ -100,29 +100,50 @@ namespace Lab01_ExceptionHandling
         // GETPRODUCT METHOD
         static int GetProduct(int[] numArray, int sum)
         {
-            // request a number between 1 and numArray length
+            try
+            {
+                // request a number between 1 and numArray length
+                Console.WriteLine($"Please select a number between 1 and {numArray.Length}");
+                string inputIdx = Console.ReadLine();
 
-            // declare int product as sum times the random index they picked in the array
-            int product = 0;
+                // declare int product as sum times the random index they picked in the array
+                int multiplier = numArray[Convert.ToInt32(inputIdx)];
+                int product = sum * multiplier;
 
-            // return product
-            return product;
+                // return product
+                return product;
+            }
             // catch indexoutofrange exception, output the message of the exception, then throw it back down all the way to Main
+            catch (IndexOutOfRangeException e)
+            {
+                Console.WriteLine($"There was an Index exception: {e.Message}");
+                throw;
+            }
         }
 
         // GETQUOTIENT METHOD
         static decimal GetQuotient(int product)
         {
+            decimal quotient;
+            try
+            { 
             // integrating the product, ask the user for a number to divide it by
-            decimal dividend = 0m;
+            Console.WriteLine($"Please enter a number to divide your product {product} by");
+            string inputDiv = Console.ReadLine();
+            decimal dividend = Convert.ToDecimal(inputDiv);
 
             // use decimal.Divide() to get the quotient of the product and the dividend
-            decimal quotient = 0m;
-
+            quotient = decimal.Divide(dividend, product);
+            }
+            // catch the dividebyzero exception, display the message and return 0. DO NOT THROW TO MAIN.
+            catch (DivideByZeroException e)
+            {
+                Console.WriteLine($"There was a dividing exception:\n" +
+                    $"{e.Message}");
+                return 0;
+            }
             // return the quotient
             return quotient;
-
-            // catch the dividebyzero exception, display the message and return 0. DO NOT THROW TO MAIN.
         }
     }
 }
