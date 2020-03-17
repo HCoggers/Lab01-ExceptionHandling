@@ -69,12 +69,16 @@ namespace Lab01_ExceptionHandling
         static int[] Populate(int[] numArray)
         {
             // Request a number for each index in the array from the user
-            // Convert strings to ints along the way
-
+            for(int i = 0; i < numArray.Length; i++)
+            {
+                Console.WriteLine($"Please enter number: {i + 1} of {numArray.Length}");
+                // Convert strings to ints along the way
+                string inputNum = Console.ReadLine();
+                numArray[i] = Convert.ToInt32(inputNum);
+            }
             // Once the array is filled, return the populated array
-
-            // no expected exceptions!
             return numArray;
+            // no expected exceptions!
         }
 
         // GETSUM METHOD
@@ -83,9 +87,12 @@ namespace Lab01_ExceptionHandling
             // create new int "sum"
             int sum = 0;
             // iterate through the array, adding all numbers together
+            foreach (int num in numArray)
+                sum += num;
 
             // "throw" a custom exception if sum is less than 20
-
+            if (sum < 20)
+                throw (new Exception($"Value of {sum} is too low"));
             // return the sum
             return sum;
         }
