@@ -74,7 +74,8 @@ namespace Lab01_ExceptionHandling
                 Console.WriteLine($"Please enter number: {i + 1} of {numArray.Length}");
                 // Convert strings to ints along the way
                 string inputNum = Console.ReadLine();
-                numArray[i] = Convert.ToInt32(inputNum);
+                if(int.TryParse(inputNum, out int num))
+                    numArray[i] = num;
             }
             // Once the array is filled, return the populated array
             return numArray;
@@ -107,7 +108,7 @@ namespace Lab01_ExceptionHandling
                 string inputIdx = Console.ReadLine();
 
                 // declare int product as sum times the random index they picked in the array
-                int multiplier = numArray[Convert.ToInt32(inputIdx)];
+                int multiplier = numArray[int.Parse(inputIdx)];
                 int product = sum * multiplier;
 
                 // return product
