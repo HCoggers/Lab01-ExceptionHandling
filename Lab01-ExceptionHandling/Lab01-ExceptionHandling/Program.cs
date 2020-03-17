@@ -7,12 +7,22 @@ namespace Lab01_ExceptionHandling
         // MAIN METHOD
         static void Main(string[] args)
         {
-            // Call StartSequenc
-
+            try
+            {
+                // Call StartSequence
+                StartSequence();
+            }
             // Catch Generic Errors (Anything the methods further up the stack miss)
-
+            catch (Exception e)
+            {
+                Console.WriteLine("I'm sorry, something went wrong. Let's restart.");
+                Console.WriteLine($"The Exception was: {e.Message}");
+            }
             // Include Finally Block to finish off program
-
+            finally
+            {
+                Console.WriteLine("Program is complete.");
+            }
         }
 
         // STARTSEQUENCE METHOD
